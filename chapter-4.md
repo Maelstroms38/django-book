@@ -72,7 +72,7 @@ class Query(ObjectType):
     authors = DjangoFilterConnectionField(AuthorNode)
 ```
 
-With the above snippet, we are implementing a number of useful functionality.
+With the above snippet, we are reusing the `BookFilter`, and creating two new lists: `book` and `author`.
 
 1. For each `DjangoObjectType`, we add a unique node. With Django and Graphene, we are also utilizing cursor-based pagination, provided by [Relay](https://relay.dev/docs/en/graphql-server-specification.html).
 
@@ -107,7 +107,7 @@ schema = Schema(query=Query)
 
 For schemas, here are the main takeaways:
 
-1. The schema acts as our entry point to access GraphQL data. 
+1. The above schema acts as an entry point to access GraphQL data, through `Query` and `Mutation` classes. 
 
 2. The schema's type system allows us to define what object types are available on the backend.
 
@@ -202,7 +202,7 @@ schema = Schema(query=Query, mutation=Mutation)
 
 ## Test Queries and Mutations
 
-Let's run the application and test our queries and mutations:
+Let's run the application to test our queries and mutations:
 
 ```bash
 python3 manage.py runserver
@@ -255,3 +255,8 @@ mutation {
 Creating, fetching and updating books works successfully! **WELL DONE!!**
 
 In the next section, we introduce GraphQL Authentication and File Uploads.
+
+## Sources
+- [akiradev.netlify.com](https://akiradev.netlify.com/posts/django-graphql-api/)
+- [apirobot.me](https://apirobot.me/posts/django-react-ts-how-to-create-and-consume-graphql-api)
+- [howtographql.com/](https://www.howtographql.com/graphql-python/8-pagination/)

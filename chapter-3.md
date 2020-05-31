@@ -108,9 +108,6 @@ class BookViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 ```
 
-> Interested in object-level permissions? 
-> [Source](https://www.django-rest-framework.org/api-guide/permissions/#examples)
-
 ## DRF Pagination
 
 For pagination, we simply update our `settings.py`:
@@ -129,3 +126,6 @@ Now we can pass in `limit` and `offset` parameters into our queries: `http://127
 With that, we have developed our mini library API with filters, permissions and pagination. **WELL DONE!**
 
 In the next section, we introduce GraphQL queries with Graphene.
+
+## Sources
+- [django-rest-framework](https://github.com/encode/django-rest-framework/blob/master/docs/api-guide/filtering.md)

@@ -224,13 +224,13 @@ Now we can manage the application models from Django's admin panel. Let's run th
 ```bash
 python3 manage.py makemigrations
 python3 manage.py migrate
-python3 manage.py createsuperuser --username USERNAME --email EMAIL --password PASSWORD
+python3 manage.py createsuperuser --username USERNAME --email EMAIL
 python3 manage.py runserver
 ```
 
 - [Source: Django Docs](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser)
 
-Try creating your new models with the Django admin panel at `http://127.0.0.1:8000/admin/`. You should be able to login using the credentials from the previous command.
+Try creating your new models with the Django admin panel at [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/). You should be able to login using the credentials from the previous command.
 
 ### Collect Static Assets
 
@@ -257,3 +257,6 @@ python3 manage.py collectstatic --noinput
 Congratulations, today we made a sample Django library app!
 
 In the next section, we introduce Django Rest Framework and our first serializers.
+
+## Sources
+- [docs.graphene-python.org](https://docs.graphene-python.org/projects/django/en/latest/tutorial-plain/)
