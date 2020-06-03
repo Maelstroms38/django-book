@@ -13,12 +13,12 @@ isFree: true
 In this section, we can begin to create a Django micro-API framework. First, we would like to consider a few key questions:
 
 1. What are the benefits of using Django and Python?
-- In Django, lots of things are handled for you, with the full suite of customization options available. 
-- Python is amongst the most [popular](https://github.com/trending/python) coding languages to date. This means that there are plenty of open-source libraries and packages to choose from. 
+  - In Django, lots of things are handled for you, with the full suite of customization options available. 
+  - Python is amongst the most [popular](https://github.com/trending/python) coding languages to date. This means that there are plenty of open-source libraries and packages to choose from. 
 
 2. How can I integrate Django with non-python projects?
-- In short, we will use Django to create an API interface.
-- We will cover two types of API interfaces: RESTful and GraphQL:
+  - In short, we will use Django to create an API interface.
+  - We will cover two types of API interfaces: RESTful and GraphQL:
     - Query for your data using Django Rest Framework 
         - Models, Viewsets, Serializers (RESTful API)
     - Query for your data using Graphene 
