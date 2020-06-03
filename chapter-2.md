@@ -177,7 +177,7 @@ urlpatterns = [
 Ready to test it out? Run the server locally, and visit `http://127.0.0.1:8000/api/`.
 
 ```bash
-(libby) $ python3 manage.py runserver
+pipenv run python3 manage.py runserver
 ```
 
 You should be able to read, write and edit your authors and books.

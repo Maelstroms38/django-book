@@ -80,7 +80,7 @@ class BookViewSet(viewsets.ModelViewSet):
 Now we can revisit the API docs and try a search for books at `http://127.0.0.1/api/books?title=gone+girl`:
 
 ```bash
-(libby) $ python3 manage.py runserver
+pipenv run python3 manage.py runserver
 ```
 
 ## DRF Permissions

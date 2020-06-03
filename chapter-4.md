@@ -205,7 +205,7 @@ schema = Schema(query=Query, mutation=Mutation)
 Let's run the application to test our queries and mutations:
 
 ```bash
-python3 manage.py runserver
+pipenv run python3 manage.py runserver
 ```
 
 Visit [http://127.0.0.1:8000/graphql](http://127.0.0.1:8000/graphql), and try fetching all books, with their respective authors:

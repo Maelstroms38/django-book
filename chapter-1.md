@@ -59,14 +59,10 @@ Let's kick things off with a new directory, called `libby`:
 ```bash
 mkdir libby
 cd libby
-python3 -m venv . 
-source ./bin/activate # On Windows use `env\Scripts\activate`
-pip3 install Django==3.0.5
-touch requirements.txt
-pip freeze < requirements.txt
-python3 -m django startproject library
+pipenv install django==3.0.5
+pipenv run python3 -m django startproject library
 cd library
-python3 manage.py startapp catalog
+pipenv run python3 manage.py startapp catalog
 ```
 
 So far, we created a new `virtualenv`, which acts as a container for our application. We use the `virtualenv` to keep our application dependencies in check using `pip`. After installing Django, we save our list of dependencies in a file called `requirements.txt`.
@@ -222,10 +218,10 @@ Now we can manage the application models from Django's admin panel. Let's run th
 2) Create a super user without inputting sensitive credentials.
 
 ```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser --username USERNAME --email EMAIL
-python3 manage.py runserver
+pipenv run python3 manage.py makemigrations
+pipenv run python3 manage.py migrate
+pipenv run python3 manage.py createsuperuser --username USERNAME --email EMAIL
+pipenv run python3 manage.py runserver
 ```
 
 - [Source: Django Docs](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser)
@@ -249,7 +245,7 @@ STATIC_URL = os.environ.get('STATIC_URL', '/staticfiles/')
 Then collect static assets:
 
 ```bash
-python3 manage.py collectstatic --noinput
+pipenv run python3 manage.py collectstatic --noinput
 ```
 
 - For production, Django websites typically use [Whitenoise](http://whitenoise.evans.io/en/stable/) for serving static files.
