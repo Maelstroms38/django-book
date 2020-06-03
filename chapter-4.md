@@ -23,7 +23,7 @@ As we develop the library API, it would be useful to understand how we can exten
 ## Installation
 
 ```bash
-pip install graphene-django
+pipenv install graphene-django
 ```
 
 Add `graphene_django` to the INSTALLED_APPS in the `settings.py` file of your Django project:

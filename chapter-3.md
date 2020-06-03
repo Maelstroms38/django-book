@@ -22,7 +22,7 @@ Now that we have a mini library API, we can add some search functionality to the
 Let's begin by installing the `django-filter` library:
 
 ```bash
-pip3 install django-filter
+pipenv install django-filter
 ```
 
 If you want to use the django-filter backend by default, add it to the DEFAULT_FILTER_BACKENDS setting.

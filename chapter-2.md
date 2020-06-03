@@ -41,8 +41,7 @@ As a brief disclaimer, we are not going to work with **Templates** in this cours
 Without further ado, let's begin with the installation of Django Rest Framework.
 
 ```bash
-pip3 install djangorestframework
-pip3 freeze > requirements.txt
+pipenv install djangorestframework
 ```
 
 Add to `library/library/settings.py`
