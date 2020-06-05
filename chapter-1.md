@@ -65,7 +65,7 @@ cd library
 pipenv run python3 manage.py startapp catalog
 ```
 
-So far, we created a new `virtualenv`, which acts as a container for our application. We use the `virtualenv` to keep our application dependencies in check using `pip`. After installing Django, we save our list of dependencies in a file called `requirements.txt`.
+So far, we created a new `pipenv`, which acts as a container for our application. We use the `pipenv` to keep our application dependencies in check using `pip`. After installing Django, we save our list of dependencies in a file called `Pipfile`.
 
 Django handles the rest, by creating a new project and application definition: `library`.
 
@@ -129,9 +129,6 @@ Our database schema can be represented as follows:
 - Author
     - `first_name`
     - `last_name`
-    - `date_of_birth`
-    - `date_of_death`
-    - `slug`
 
 - Book
     - `title`
@@ -255,4 +252,5 @@ Congratulations, today we made a sample Django library app!
 In the next section, we introduce Django Rest Framework and our first serializers.
 
 ## Sources
+- [Coding for Entrepenuers](https://www.codingforentrepreneurs.com/)
 - [docs.graphene-python.org](https://docs.graphene-python.org/projects/django/en/latest/tutorial-plain/)

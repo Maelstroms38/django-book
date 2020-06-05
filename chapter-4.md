@@ -72,7 +72,7 @@ class Query(ObjectType):
     authors = DjangoFilterConnectionField(AuthorNode)
 ```
 
-With the above snippet, we are reusing the `BookFilter`, and creating two new lists: `book` and `author`.
+With the above snippet, we are reusing the `BookFilter`, and creating two new lists for `books` and `authors`.
 
 1. For each `DjangoObjectType`, we add a unique node. With Django and Graphene, we are also utilizing cursor-based pagination, provided by [Relay](https://relay.dev/docs/en/graphql-server-specification.html).
 
@@ -200,6 +200,23 @@ class Mutation(catalog.schema.Mutation, ObjectType):
 schema = Schema(query=Query, mutation=Mutation)
 ```
 
+## URL Updates
+
+Finally, inside `library/library/urls.py`, insert the following:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('catalog.api.urls'))
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+]
+```
+
 ## Test Queries and Mutations
 
 Let's run the application to test our queries and mutations:
@@ -254,7 +271,7 @@ mutation {
 
 Creating, fetching and updating books works successfully! **WELL DONE!!**
 
-In the next section, we introduce GraphQL Authentication and File Uploads.
+In the next section, we introduce GraphQL Authentication.
 
 ## Sources
 - [akiradev.netlify.com](https://akiradev.netlify.com/posts/django-graphql-api/)

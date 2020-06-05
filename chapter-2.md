@@ -161,6 +161,8 @@ router.register(r'books', BookViewSet)
 urlpatterns = router.urls
 ```
 
+## URL Updates
+
 Finally, inside `library/library/urls.py`, insert the following:
 
 ```python

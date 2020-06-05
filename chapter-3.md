@@ -77,7 +77,7 @@ class BookViewSet(viewsets.ModelViewSet):
     filterset_class = BookFilter
 ```
 
-Now we can revisit the API docs and try a search for books at `http://127.0.0.1/api/books?title=gone+girl`:
+Now we can revisit the API docs and try a search for books at [http://127.0.0.1/api/books?title=gone+girl](http://127.0.0.1/api/books?title=gone+girl):
 
 ```bash
 pipenv run python3 manage.py runserver
@@ -121,7 +121,7 @@ REST_FRAMEWORK = {
 }
 ```
 
-Now we can pass in `limit` and `offset` parameters into our queries: `http://127.0.0.1/api/books?limit=10`.
+Now we can pass in `limit` and `offset` parameters into our queries: [http://127.0.0.1/api/books?limit=10](http://127.0.0.1/api/books?limit=10).
 
 With that, we have developed our mini library API with filters, permissions and pagination. **WELL DONE!**
 
