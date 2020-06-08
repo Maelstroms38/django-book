@@ -14,7 +14,6 @@ isFree: true
 
 - Create, upload images to Amazon S3 and `boto3`
 - Accept uploaded file images using `graphene-file-upload`
-- 
 
 ### Introduction
 
@@ -170,7 +169,7 @@ Otherwise, check out this link:
 
 See the diagram below for an overview of the Altair client usage:
 
-![Altair Setup](./assets/altair.png)
+![Imgur](https://i.imgur.com/MjiIFv7.png)
 
 ### Authorization Header
 
