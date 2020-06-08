@@ -14,6 +14,7 @@ isFree: true
 
 - Login or sign up using token authentication
 - Create a user authentication mutation 
+- Secure the GraphQL endpoint for authenticated users
 
 ### Introduction
 
@@ -189,6 +190,8 @@ Authorization: JWT <token>
 Content-Type: application/json;
 ```
 
+Note the `JWT <token>` included with each `Authorization` header.
+
 Back in `users/gql/schema.py`, make the following additions:
 
 ```python
@@ -217,7 +220,15 @@ class Mutation(ObjectType):
 schema = Schema(query=Query, mutation=Mutation)
 ```
 
-Finally return to the root schema inside `library/schema.py`, and insert our `users` schema.
+Here, we are adding those three new auth mutations:
+
+1. ObtainJSONWebToken
+2. Verify
+2. Refresh 
+
+Let's go ahead and tie this back with our root schema.
+
+Return to the root schema inside `library/schema.py`, and insert our `users` schema.
 
 ```python
 from graphene import Schema, ObjectType
@@ -287,7 +298,103 @@ mutation {
 
 Viola! Authentication with Django and Graphene is now working as expected. **WELL DONE!!**
 
-In the next section we will let users write reviews for their favorite books. 
+### Django Routing
 
-## Sources
+## Standard Redirect View
+
+With JWT's working nicely, we can consider a new set of *secure* routes for our API endpoints and GraphQL application.
+
+Let's begin with an example of our first redirect view.
+
+Add the following your root project setting in `library/settings.py`:
+
+```
+LOGIN_URL = '/admin/'
+LOGIN_REDIRECT_URL = '/graphql'
+```
+
+Go ahead and add our first redirect view to `catalog/views.py`:
+
+```python
+from django.shortcuts import render, redirect
+from django.conf import settings
+
+# ...
+
+def redirect_view(request):
+    if request.user.is_authenticated:
+        return redirect("/graphql")
+    else:
+        return redirect("/api")
+```
+
+
+## Adding PrivateGraphQLView
+
+As a bonus, we can include a more secure approach to the GraphQL playground. 
+
+> This section is *optional*, while **recommended** for those with application level security concerns.
+
+> Generally, GraphQL query playgrounds are turned *off* in production, so this is a step in the right direction.
+
+Return to `catalog.views.py`, add introduce a new `TokenLoginRequiredMixin`. 
+
+Yes, a new `mixin`, which can *mix* our existing pages, essentially creating a generic instance of two view classes. 
+
+Here's a new mixin' example for `TokenLoginRequiredMixin`:
+
+```python
+from django.contrib.auth import mixins
+from rest_framework.authentication import SessionAuthentication
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
+# ...
+
+class TokenLoginRequiredMixin(mixins.LoginRequiredMixin):
+
+    """A login required mixin that allows token authentication."""
+
+    def dispatch(self, request, *args, **kwargs):
+        """If token was provided, ignore authenticated status."""
+        http_auth = request.META.get("HTTP_AUTHORIZATION")
+
+        """Check for a passing JWT <token> in headers"""
+        if http_auth and "JWT" in http_auth:
+            pass
+          
+        elif not request.user.is_authenticated:
+            return self.handle_no_permission()
+
+        return super(mixins.LoginRequiredMixin, self).dispatch(
+            request, *args, **kwargs)
+      
+class PrivateGraphQLView(TokenLoginRequiredMixin, FileUploadGraphQLView):
+
+    """This view supports both token and session authentication."""
+    
+    authentication_classes = [
+        SessionAuthentication,
+        JSONWebTokenAuthentication,
+        ]
+```
+
+To include with our existing routes, add the secure `PrivateGraphQLView` to `libary/urls.py`:
+
+```
+from catalog.views import PrivateGraphQLView, redirect_view
+
+urlpatterns = [
+    path('', redirect_view, name='index'),
+    path('admin/', admin.site.urls),
+    path('api/', include('catalog.api.urls')),
+    path('graphql/', csrf_exempt(PrivateGraphQLView.as_view(graphiql=True))),
+]
+```
+
+**That's a wrap! WELL DONE!!**
+
+In the next section, we will let users write reviews for their favorite books. 
+
+## References
 - [django-graphql-jwt](https://django-graphql-jwt.domake.io/en/latest/)
+- [Real Django](https://realpython.com/django-redirects/#redirects-in-django)

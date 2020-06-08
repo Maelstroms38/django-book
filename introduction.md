@@ -76,7 +76,7 @@ Before getting started, here is another excellent tutorial to get familiar with 
 
 Before getting started, please [download](https://www.python.org/downloads/) a Python version of at least `3.6` and above. For full Python and Django version support, refer to this [document](https://docs.djangoproject.com/en/3.0/faq/install/#what-python-version-can-i-use-with-django).
 
-## Sources
+## References
 
 - [Install Python for Mac or Linux](https://www.codingforentrepreneurs.com/blog/install-django-on-mac-or-linux)
 - [Install Python for Windows](https://www.codingforentrepreneurs.com/blog/install-python-django-on-windows)

@@ -187,5 +187,5 @@ Congratulations, today we created a mini library API. **WELL DONE!**
 
 In the next section, we introduce Django filters, permissions and pagination.
 
-## Sources
+## References
 - [django-rest-framework](https://github.com/encode/django-rest-framework)

@@ -313,4 +313,8 @@ mutation {
 
 Creating and updating book reviews is now working as expected. **WELL DONE!!**
 
-In the next section we prepare the library for [deployment](https://testdriven.io/blog/deploying-django-to-heroku-with-docker/). Stay tuned!
+In the next section, we prepare the library for [Amazon S3](https://aws.amazon.com/s3/) image uploads. Stay tuned!
+
+## References
+
+- [How To GraphQL](https://www.howtographql.com/graphql-python/5-links-and-voting/)

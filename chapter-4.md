@@ -273,7 +273,7 @@ Creating, fetching and updating books works successfully! **WELL DONE!!**
 
 In the next section, we introduce GraphQL Authentication.
 
-## Sources
+## References
 - [akiradev.netlify.com](https://akiradev.netlify.com/posts/django-graphql-api/)
 - [apirobot.me](https://apirobot.me/posts/django-react-ts-how-to-create-and-consume-graphql-api)
 - [howtographql.com/](https://www.howtographql.com/graphql-python/8-pagination/)

@@ -127,5 +127,5 @@ With that, we have developed our mini library API with filters, permissions and 
 
 In the next section, we introduce GraphQL queries with Graphene.
 
-## Sources
+## References
 - [django-rest-framework](https://github.com/encode/django-rest-framework/blob/master/docs/api-guide/filtering.md)

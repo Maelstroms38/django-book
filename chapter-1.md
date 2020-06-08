@@ -251,6 +251,6 @@ Congratulations, today we made a sample Django library app!
 
 In the next section, we introduce Django Rest Framework and our first serializers.
 
-## Sources
+## References
 - [Coding for Entrepenuers](https://www.codingforentrepreneurs.com/)
 - [docs.graphene-python.org](https://docs.graphene-python.org/projects/django/en/latest/tutorial-plain/)
