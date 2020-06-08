@@ -73,7 +73,7 @@ aws_secret_access_key=XXXX
 
 > NOTE: You must replace the "XXXX" values with your own S3 bucket keys.
 
-Check the first References [link](#Reference) below to learn more about S3 image hosting.
+Check the first References [link](#references) below to learn more about S3 image hosting.
 
 Once you have the two keys in your `.aws/credentials`, proceed to file uploads.
 
@@ -173,7 +173,7 @@ See the diagram below for an overview of the Altair client usage:
 
 ### Authorization Header
 
-:warning: In Altair, be sure to include your logged-in user's JSON web token with each requests' headers as follows:
+In Altair, be sure to include your logged-in user's JSON web token with each requests' headers as follows:
 
 ```
 Authorization: JWT <token>
