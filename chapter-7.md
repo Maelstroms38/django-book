@@ -73,9 +73,9 @@ aws_secret_access_key=XXXX
 
 > NOTE: You must replace the "XXXX" values with your own S3 bucket keys.
 
-Check the first References [link](#references) below to learn more about S3 image hosting.
+Check out this [guide](https://git.generalassemb.ly/WDI-CC-LIBRARY/django-uploading-images#intro) to learn more about S3 image hosting.
 
-Once you have the two keys in your `.aws/credentials`, proceed to file uploads.
+Once you have the two keys in your `.aws/credentials`, proceed to accepting file uploads.
 
 ## Accepting Files
 
@@ -99,10 +99,11 @@ from graphene_file_upload.scalars import Upload
 import boto3
 import uuid
 
-# AWS S3 "constants"
+# AWS S3 constants
 S3_BASE_URL = 's3.amazonaws.com' 
 BUCKET = 'libby-app'
 
+# Once we add this node, we can query for book images
 class BookImageNode(DjangoObjectType):
     class Meta:
         model = BookImage
@@ -123,7 +124,7 @@ class BookImageMutation(Mutation):
         book_id = data.get('id')
         if photo_file and book_id:
             s3 = boto3.client('s3')
-            # need a unique "key" for S3 / needs image file extension too
+            # 1. need a unique "key" for S3 / needs image file extension too
             key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
             # just in case something goes wrong
             try:
@@ -131,8 +132,8 @@ class BookImageMutation(Mutation):
                 # build the full url string
                 # url has to be unique, 
                 # otherwise we risk overwriting existing files.
-                url = f"{S3_BASE_URL}{BUCKET}/books/{book_id}/{key}"
-                # we can assign to book_id or book (if you have a book object)
+                url = f"https://{BUCKET}.{S3_BASE_URL}/{key}"
+                # 2. we can assign to book_id or book (if you have a book object)
                 photo = BookImage(url=url, book_id=book_id)
                 photo.save()
             except Exception as err:
@@ -150,6 +151,14 @@ class Mutation(ObjectType):
 
 schema = Schema(query=Query, mutation=Mutation)
 ```
+
+In this upload mutation, we introduce a new GraphQL type, called `Upload`. Then we called the S3 boto client's `upload_fileobj` function, which sends the file to our image bucket. 
+
+In summary:
+
+1. We give each file a unique `key` string, so we never overwrite existing images.
+
+2. Once the upload succeeds, we create a new `BookImage` and assign it's public url.
 
 As you may have guessed, this mutation will handle creating the file upload using a `multi-part` form data header. Testing locally requires a new request interface called [Altair](https://altair.sirmuel.design/#download).
 
@@ -253,7 +262,7 @@ query {
 
 **That's a wrap! WELL DONE!!**
 
-In the next section we prepare the library for [deployment](https://testdriven.io/blog/deploying-django-to-heroku-with-docker/). Stay tuned!
+In the next section we prepare the library for deployment. Stay tuned!
 
 ## References
 
