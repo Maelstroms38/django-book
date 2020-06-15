@@ -23,8 +23,6 @@ In this section, we can begin to create a Django micro-API framework. First, we 
         - Models, Viewsets, Serializers (RESTful API)
     - Query for your data using Graphene 
         - Schema, Queries, Resolvers, Mutations (GraphQL)
-    - The frontend guide includes a NextJS (TypeScript) web application.
-        - We will configure hooks to generate and test frontend queries.
 
 ## Tech Overview 
 
@@ -34,11 +32,6 @@ Here is an overview of the tech we will be using throughout the project.
 - [Django](https://www.djangoproject.com/)
 - [Graphene](https://docs.graphene-python.org/projects/django/en/latest/tutorial-plain/)
 - [Django-GraphQL-JWT](https://django-graphql-jwt.domake.io/en/latest/quickstart.html)
-
-### Frontend (TypeScript)
-- [NextJS](https://nextjs.org/)
-- [Apollo Client](https://www.apollographql.com/docs/react/)
-- [GraphQL Codegen](https://graphql-code-generator.com/)
 
 ## Getting Started. 
 
@@ -50,7 +43,7 @@ As pictured above, we will develop the app in three stages:
 
 1) Set up a Python virtual environment
 2) Create a Django API interface
-3) Develop a frontend web application with NextJS (TypeScript)
+3) Create a Django GraphQL interface with Graphene
 
 ## Virtual Env and project structure. 
 
