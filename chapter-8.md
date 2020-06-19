@@ -27,6 +27,90 @@ In this section, we will cover two approaches to deploying the library app:
 
 We will also include references to an advanced deployment with [Gitlab CI](https://docs.gitlab.com/ee/ci/#overview).
 
+## Heroku CLI
+
+It's time to launch libby to [Heroku](https://www.heroku.com).
+
+> Make sure you download the [`heroku cli`](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) and run `heroku login`
+
+## Installation
+
+Let's begin by installing some of the packages we will need:
+
+```bash
+pipenv install whitenoise dj-database-url gunicorn psycopg2-binary
+```
+
+## Static Files
+
+Add the following to `library/settings.py`:
+
+```python
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # ...
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+```
+
+Whitenoise will now handle hosting our static assets.
+
+### Procfile
+
+Add a new `Procfile` in the root directory `library/Procfile`:
+
+```
+web: gunicorn library.wsgi
+```
+
+In this `Procfile`, we declare a web process for our application.
+
+
+### Heroku Create
+
+First, create and name your new heroku application:
+
+```bash
+heroku create your-heroku-app-name
+```
+
+Based on your app name, you will need to replace the `HEROKU_APP_NAME` value in your `library/settings.py` to whitelist this URL.
+
+### Settings
+
+Next, add the following to your `library/settings.py`:
+
+```python
+import dj_database_url
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'HEROKU_APP_NAME.herokuapp.com']
+
+# ...
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+DATABASES['default'].update(db_from_env)
+```
+
+## Deployment
+
+1. `git status`
+2. `git commit -am "add any pending changes"`
+3. `git push heroku master`
+4. `heroku run python3 manage.py migrate`
+5. `heroku run python3 manage.py createsuperuser`
+
 ## Docker
 
 Download [Docker Desktop](https://www.docker.com/products/docker-desktop), and ensure it's running on your machine with the following command:
