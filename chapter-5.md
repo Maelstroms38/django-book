@@ -337,7 +337,7 @@ As a bonus, we can include a more secure approach to the GraphQL playground.
 
 > Generally, GraphQL query playgrounds are turned *off* in production, so this is a step in the right direction.
 
-Return to `catalog.views.py`, add introduce a new `TokenLoginRequiredMixin`. 
+Return to `catalog/views.py`, and add a new mixin called `TokenLoginRequiredMixin`. 
 
 Yes, a new `mixin`, which can *mix* our existing pages, essentially creating a generic instance of two view classes. 
 
@@ -347,6 +347,7 @@ Here's a new mixin' example for `TokenLoginRequiredMixin`:
 from django.contrib.auth import mixins
 from rest_framework.authentication import SessionAuthentication
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from graphene_django.views import GraphQLView
 
 # ...
 
@@ -368,7 +369,7 @@ class TokenLoginRequiredMixin(mixins.LoginRequiredMixin):
         return super(mixins.LoginRequiredMixin, self).dispatch(
             request, *args, **kwargs)
       
-class PrivateGraphQLView(TokenLoginRequiredMixin, FileUploadGraphQLView):
+class PrivateGraphQLView(TokenLoginRequiredMixin, GraphQLView):
 
     """This view supports both token and session authentication."""
     

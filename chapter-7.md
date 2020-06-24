@@ -162,6 +162,19 @@ In summary:
 
 As you may have guessed, this mutation will handle creating the file upload using a `multi-part` form data header. Testing locally requires a new request interface called [Altair](https://altair.sirmuel.design/#download).
 
+## FileUploadGraphQLView
+
+Replace your existing `GraphQLView` with a new `FileUploadGraphQLView` in `library/library/urls.py`:
+
+```python
+from graphene_file_upload.django import FileUploadGraphQLView
+
+urlpatterns = [
+  # ...
+  url(r'^graphql', FileUploadGraphQLView.as_view(graphiql=True)),
+]
+```
+
 ## Testing Locally
 
 ### Altair Client

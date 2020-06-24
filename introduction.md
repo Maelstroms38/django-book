@@ -42,7 +42,7 @@ Django is written in Python, which runs on many platforms. That means that you a
 
 ### What can Django do for me?
 
-When considering Django at first, I found out a lot of features, like authention and permissions were built in. By seeing many common use cases for Python, developers are able to create more robust applications.
+When considering Django at first, I found out a lot of features, like authentication and permissions were built in. By seeing many common use cases for Python, developers are able to create more robust applications.
 
 The preceding sections show the main features that you'll use in almost every web application: URL mapping, views, models and templates. Just a few of the other things provided by Django include:
 
