@@ -41,7 +41,7 @@ class BookImage(models.Model):
 	url = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.book.name or ""
+		return self.book.title or ""
 
 	class Meta:
 		verbose_name = "Book Image"
